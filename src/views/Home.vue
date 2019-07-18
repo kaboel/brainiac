@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <Open :chart-data="data"/>
+        <Open :chart-data="this.data"/>
     </div>
 </template>
 
@@ -16,7 +16,7 @@
                 data: '',
                 Open: {
                     Average: '',
-                    last: ''
+                    Last: ''
                 },
                 Close: {
                     Average: '',
