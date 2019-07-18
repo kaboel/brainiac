@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <router-view/>
+        <Home />
     </div>
 </template>
 
@@ -14,3 +14,9 @@
         margin-top: 60px;
     }
 </style>
+<script>
+    import Home from "./views/Home";
+    export default {
+        components: {Home}
+    }
+</script>

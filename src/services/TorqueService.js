@@ -1,7 +1,7 @@
-import Api from 'service';
+import Api from './Api';
 
 export default {
-    async index() {
-        return await Api().get('/TorqueValues');
+    index() {
+        return Api().get('/TorqueValues');
     }
 }
