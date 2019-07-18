@@ -1,17 +1,19 @@
 <template>
     <div class="home">
-<!--        {{ this.data }}-->
+        <Open :chart-data="data"/>
     </div>
 </template>
 
 <script>
     import TorqueService from '../services/TorqueService';
+    import Open from "../components/Open";
+
     export default {
         name: 'home',
-        components: {},
+        components: {Open},
         data() {
             return {
-                data: [],
+                data: '',
                 Open: {
                     Average: '',
                     last: ''
@@ -23,10 +25,30 @@
             }
         },
         mounted() {
-            this.loadData();
+            this.loadData().then(() => {
+
+                this.data = {
+                    labels : [],
+                    datasets: [
+                        {
+                            label: 'Average',
+                            backgroundColor: '#aaa',
+                            data: this.Open.Average
+                        },
+                        {
+                            label: 'Last',
+                            backgroundColor: '#ddd',
+                            data: this.Open.Last
+                        }
+                    ]
+                }
+
+            }).catch(err => {
+                alert(err);
+            });
         },
         methods: {
-            loadData() {
+            async loadData() {
                 TorqueService.index()
                     .then(res => {
 
@@ -58,6 +80,10 @@
                         alert(err);
                     })
             },
+
+            chartData() {
+
+            }
         }
     }
 </script>
